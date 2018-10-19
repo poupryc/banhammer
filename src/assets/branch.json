@@ -1,0 +1,57 @@
+{
+  "cn": {
+    "name": "基金会",
+    "language": "chinois"
+  },
+  "de": {
+    "name": "Foundation",
+    "language": "allemand",
+    "discord": "https://discord.gg/XyEesD5"
+  },
+  "en": {
+    "name": "The Foundation",
+    "language": "anglais"
+  },
+  "es": {
+    "name": "La Fundación",
+    "language": "espagnol",
+    "discord": "https://discord.gg/Y7um6XY"
+  },
+  "fr": {
+    "name": "La Fondation",
+    "language": "français",
+    "discord": "https://discord.gg/YF379cn"
+  },
+  "it": {
+    "name": "La Fondazione",
+    "language": "italien",
+    "discord": "https://discord.gg/hbqV2pV"
+  },
+  "ja": {
+    "name": "財団",
+    "language": "japonais"
+  },
+  "ko": {
+    "name": "재단",
+    "language": "coréen"
+  },
+  "pl": {
+    "name": "Fundacji",
+    "language": "polonais",
+    "discord": "https://discord.gg/8fXkgUg"
+  },
+  "ru": {
+    "name": "Фонд",
+    "language": "russe",
+    "discord": "https://discord.gg/vSYW75g"
+  },
+  "th": {
+    "name": "สถาบัน",
+    "language": "thailandais"
+  },
+  "int": {
+    "name": "Archives Internationales de Traduction",
+    "language": "anglais (INT)",
+    "discord": "https://discord.gg/3umAxN5"
+  }
+}

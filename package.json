@@ -1,0 +1,42 @@
+{
+  "name": "banhammer",
+  "version": "0.0.0-development",
+  "description": "Bot discord pour la branche Française de la Fondation SCP",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "start": "node ./dist/src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HelloEdit/banhammer.git"
+  },
+  "keywords": [
+    "discord",
+    "foundation"
+  ],
+  "author": "HelloEdit (https://github.com/HelloEdit)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/HelloEdit/banhammer/issues"
+  },
+  "homepage": "https://github.com/HelloEdit/banhammer#readme",
+  "dependencies": {
+    "@hershel/dispatcher": "^3.0.0",
+    "@hershel/plugin": "^1.0.2",
+    "cheerio": "^1.0.0-rc.2",
+    "dice-typescript": "^1.6.0",
+    "got": "^9.2.2",
+    "hershel": "^2.1.1",
+    "scpper.js": "^3.0.3",
+    "wikidot-kit": "^0.7.0"
+  },
+  "devDependencies": {
+    "@types/cheerio": "^0.22.9",
+    "@types/got": "^8.3.4",
+    "@types/node": "^10.11.7",
+    "prettier": "^1.14.3",
+    "typescript": "^3.1.3"
+  }
+}

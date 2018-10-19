@@ -1,0 +1,9 @@
+npm-debug.log
+test
+LICENSE
+.gitignore
+README.md
+.prettierrc
+.travis.yml
+Dockerfile
+.git
