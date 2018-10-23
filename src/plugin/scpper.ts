@@ -8,7 +8,7 @@ import { Banhammer } from '../types'
  * @param instance banhammer
  */
 const scpperPlugin: Banhammer.plugin = async instance => {
-  const scpper = new Scpper({ site: 'fr', timeout: 7000 })
+  const scpper = new Scpper({ site: 'fr', timeout: 10000 })
 
   instance.set('wiki', Api.SiteUrl[scpper.site])
   instance.set('scpper', scpper)
