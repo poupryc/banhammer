@@ -52,9 +52,10 @@ export class Page extends Command {
     }
 
     const page = helper.extractPageInfo(pages[0])
+    const rating = page.rating ? page.rating : 0
 
     reply
-      .addField('Vote', (page.rating <= 0 ? '' : '+') + page.rating, true)
+      .addField('Vote', (rating <= 0 ? '' : '+') + rating, true)
       .setFooter(page.authors.join(', '))
       .setColor(Color.GREY)
       .setTitle(page.title)
