@@ -1,7 +1,7 @@
 import { Client } from 'hershel'
 
-import { dispatcher, role, scpper } from './plugin'
-import { error } from './middleware'
+import * as middleware from './middleware'
+import * as plugin from './plugin'
 
 const isDev = process.env.NODE_ENV === 'dev'
 
@@ -14,11 +14,12 @@ const bot = new Client({
   }
 })
 
-bot.use(error)
-
-bot.register(scpper)
-bot.register(role)
-bot.register(dispatcher)
+bot
+  .use(middleware.error)
+  .register(plugin.scpper)
+  .register(plugin.role)
+  .register(plugin.reaction)
+  .register(plugin.dispatcher)
 
 bot.login(process.env.DISCORD_TOKEN)
 
