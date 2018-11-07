@@ -11,7 +11,8 @@ export class Status extends Command {
     super({
       name: 'status',
       info: 'statut du système',
-      aliases: ['ok']
+      aliases: ['ok'],
+      channel: ['dm', 'text']
     })
   }
 
