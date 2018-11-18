@@ -16,7 +16,7 @@ export class Off extends Command {
     if (app.user.presence.status === 'dnd') {
       return reply
         .setColor(Color.GREY)
-        .setDescription(`\`${app.user}\` est déjà désactivé`)
+        .setDescription(`${app.user} est déjà désactivé`)
         .send()
     }
 
@@ -24,7 +24,7 @@ export class Off extends Command {
 
     reply
       .setColor(Color.GREEN)
-      .setDescription(`\`${app.user}\` est désormais désactivé`)
+      .setDescription(`${app.user} est désormais désactivé`)
       .send()
   }
 }

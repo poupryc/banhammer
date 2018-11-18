@@ -16,7 +16,7 @@ export class On extends Command {
     if (app.user.presence.status === 'online') {
       return reply
         .setColor(Color.GREY)
-        .setDescription(`\`${app.user}\` est déjà activé`)
+        .setDescription(`${app.user} est déjà activé`)
         .send()
     }
 
@@ -24,7 +24,7 @@ export class On extends Command {
 
     reply
       .setColor(Color.GREEN)
-      .setDescription(`\`${app.user}\` est désormais activé`)
+      .setDescription(`${app.user} est désormais activé`)
       .send()
   }
 }
