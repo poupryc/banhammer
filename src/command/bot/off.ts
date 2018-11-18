@@ -5,6 +5,7 @@ export class Off extends Command {
     super({
       name: 'off',
       hidden: true,
+      accreditation: 1,
       channel: ['text']
     })
   }

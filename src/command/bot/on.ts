@@ -5,6 +5,7 @@ export class On extends Command {
     super({
       name: 'on',
       hidden: true,
+      accreditation: 1,
       channel: ['text']
     })
   }
