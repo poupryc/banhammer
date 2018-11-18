@@ -1,7 +1,7 @@
 import { Dispatcher } from '@hershel/dispatcher'
 import { plugin } from '@hershel/plugin'
 
-import { channel, error, disabled, authorization, execute } from '../middleware'
+import * as middleware from '../middleware'
 import { Banhammer } from '../types'
 
 import commands from '../command'
@@ -23,11 +23,12 @@ const dispatcherPlugin: Banhammer.plugin = async instance => {
   }
 
   dispatcher
-    .use(error)
-    .use(channel)
-    .use(authorization)
-    .use(disabled)
-    .use(execute)
+    .use(middleware.error)
+    .use(middleware.authorization)
+    .use(middleware.off)
+    .use(middleware.channel)
+    .use(middleware.disabled)
+    .use(middleware.execute)
 
   instance.use(dispatcher.commands()).set('dispatcher', dispatcher)
 }
