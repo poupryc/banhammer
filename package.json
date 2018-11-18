@@ -23,20 +23,20 @@
   },
   "homepage": "https://github.com/HelloEdit/banhammer#readme",
   "dependencies": {
-    "@hershel/dispatcher": "^3.0.0",
+    "@hershel/dispatcher": "^3.0.1",
     "@hershel/plugin": "^1.0.2",
     "cheerio": "^1.0.0-rc.2",
-    "dice-typescript": "^1.6.0",
-    "got": "^9.2.2",
+    "dice-typescript": "^1.6.1",
+    "got": "^9.3.2",
     "hershel": "^2.1.1",
     "scpper.js": "^3.0.3",
     "wikidot-kit": "^0.7.0"
   },
   "devDependencies": {
     "@types/cheerio": "^0.22.9",
-    "@types/got": "^8.3.4",
-    "@types/node": "^10.11.7",
-    "prettier": "^1.14.3",
-    "typescript": "^3.1.3"
+    "@types/got": "^9.2.0",
+    "@types/node": "^10.12.9",
+    "prettier": "^1.15.2",
+    "typescript": "^3.1.6"
   }
 }
