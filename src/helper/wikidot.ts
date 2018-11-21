@@ -22,10 +22,12 @@ export async function getPage({ site, name }: { site: string; name: string }) {
 
   const document = cheerio.load(response.html)
 
-  const parser = [extractClass, extractDescription].map(p => p(document))
+  const parser = [extractClass, extractDescription, extractThreatLevel].map(p =>
+    p(document)
+  )
 
-  const [classification, description] = await Promise.all(parser)
-  return { classification, description }
+  const [classification, description, threat] = await Promise.all(parser)
+  return { classification, description, threat }
 }
 
 /**
@@ -38,6 +40,18 @@ async function extractClass(document: CheerioStatic) {
   if (!element) return null
 
   return element.next.data ? element.next.data.trim() : null
+}
+
+/**
+ * Extract threat field
+ * @param document document
+ */
+async function extractThreatLevel(document: CheerioStatic) {
+  // @ts-ignore
+  const element: CheerioElement = document('strong:contains("Niveau")')[0]
+  if (!element) return null
+
+  return element.next.data ? element.next.data.replace('o', '').trim() : null
 }
 
 /**

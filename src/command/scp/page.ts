@@ -64,8 +64,9 @@ export class Page extends Command {
 
     helper
       .getPage(page)
-      .then(({ description, classification }) => {
+      .then(({ description, classification, threat }) => {
         if (classification) reply.addField('Classe', classification, true)
+        if (threat) reply.addField('Menace', threat, true)
 
         reply
           .setDescription(description ? description : 'Aucune description')
