@@ -28,14 +28,14 @@
     "cheerio": "^1.0.0-rc.2",
     "dice-typescript": "^1.6.1",
     "got": "^9.3.2",
-    "hershel": "^2.1.1",
+    "hershel": "^2.2.0",
     "scpper.js": "^3.0.3",
     "wikidot-kit": "^0.7.0"
   },
   "devDependencies": {
     "@types/cheerio": "^0.22.9",
     "@types/got": "^9.2.0",
-    "@types/node": "^10.12.9",
+    "@types/node": "^10.12.10",
     "prettier": "^1.15.2",
     "typescript": "^3.1.6"
   }
