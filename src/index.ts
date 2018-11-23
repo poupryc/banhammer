@@ -23,4 +23,8 @@ bot
 
 bot.login(process.env.DISCORD_TOKEN)
 
+bot.on('error', error => {
+  bot.logger.error({ error }, 'discord error')
+})
+
 process.on('SIGINT', () => bot.destroy())
