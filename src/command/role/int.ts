@@ -25,13 +25,16 @@ export class Int extends Command {
 
     new helper.Validator({ app, target }).throwIfHasRole(int)
 
-    const reason = `[MEMBER] ${author.user.tag} -> ${target.user.tag}`
+    const reason = `[INT] ${author.user.tag} -> ${target.user.tag}`
 
-    await target.addRole(member, reason)
+    await Promise.all([
+      target.addRole(int, reason),
+      target.RemoveRole(member, reason)
+    ])
 
     reply
       .setColor(Color.GREEN)
-      .setDescription(`${target} a été muté`)
+      .setDescription(`${target} est désormais membre international`)
       .send()
   }
 }
