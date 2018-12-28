@@ -29,7 +29,7 @@ export class Int extends Command {
 
     await Promise.all([
       target.addRole(int, reason),
-      target.RemoveRole(member, reason)
+      target.removeRole(member, reason)
     ])
 
     reply
