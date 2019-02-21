@@ -1,4 +1,4 @@
-FROM arm32v7/node:11-alpine AS builder
+FROM arm32v7/node:11-slim AS builder
 
 LABEL maintainer="HelloEdit <corentin.poupry@protonmail.com>"
 
@@ -10,7 +10,7 @@ RUN yarn install --ignore-optional \
   && yarn install --prefer-offline --production
 
 # Build final image
-FROM arm32v7/node:11-alpine
+FROM arm32v7/node:11-slim
 
 ENV NODE_ENV=production
 
