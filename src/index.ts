@@ -12,6 +12,10 @@ const bot = new Client({
   reply: {
     footer: { text: 'Banhammer | Fondation SCP' }
   }
+}, {
+  disabledEvents: ['TYPING_START', 'GUILD_SYNC', 'WEBHOOKS_UPDATE'],
+  messageCacheMaxSize: 100,
+  messageCacheLifetime: 3600
 })
 
 bot
