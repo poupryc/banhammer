@@ -56,7 +56,7 @@ export class User extends Command {
     Object.entries(user.activity).forEach(([key, { totalRating: vote, pages }]) =>
       reply.addField(
         key.toUpperCase(),
-        `**${pages}** pages pour **${vote ? vote : '0'}** votes`,
+        `**${pages}** page${pages === 1 ? 's' : ''} pour **${vote ? vote : '0'}** votes`,
         true
       )
     )
