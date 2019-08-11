@@ -1,7 +1,7 @@
 import { Api } from 'scpper.js'
 
 import { Banhammer, Command, Color } from '../../types/'
-import { assert, upperFirst } from '../../helper'
+import { assert } from '../../helper'
 
 import branch from '../../assets/branch.json'
 
