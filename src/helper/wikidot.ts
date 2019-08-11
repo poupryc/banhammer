@@ -1,10 +1,8 @@
 import cheerio from 'cheerio'
+import WikidotKit from 'wikidot-kit'
 import { assert } from './util'
 
-const WikidotKit = require('wikidot-kit')
-const wk = new WikidotKit({
-  token: process.env.WIKIDOT_TOKEN
-})
+const wk = new WikidotKit(process.env.WIKIDOT_TOKEN)
 
 enum WikidotSite {
   'http://scp-wiki.wikidot.com' = 'scp-wiki',
@@ -18,7 +16,7 @@ enum WikidotSite {
  * @param name page name
  */
 export async function getPage({ site, name }: { site: string; name: string }) {
-  const response = await wk.fetchPage({ wiki: extractWiki(site), name })
+  const response = await wk.fetchPage(extractWiki(site), name)
 
   const document = cheerio.load(response.html)
 
