@@ -1,4 +1,4 @@
-FROM arm32v7/node:12-slim AS builder
+FROM arm32v7/node:13-slim AS builder
 
 LABEL maintainer="HelloEdit <corentin.poupry@protonmail.com>"
 

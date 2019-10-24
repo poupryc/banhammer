@@ -1,4 +1,5 @@
 import { Scpper, Api } from 'scpper.js'
+import * as Discord from 'discord.js'
 
 import { Banhammer, Command, Color } from '../../types/'
 import * as helper from '../../helper'
@@ -14,8 +15,15 @@ export class User extends Command {
     })
   }
 
-  public async action({ createReply, params, app }: Banhammer.Context) {
+  public async action({ createReply, params, app, message }: Banhammer.Context) {
     const reply = createReply({ ...helper.embed, color: Color.GOLD })
+
+    if (checkIfLekterIsTryingToShowHisEgo(message)) {
+      return reply
+        .setType('string')
+        .setMessage('no')
+        .send()
+    }
 
     const scpper = app.get<Scpper>('scpper')
 
@@ -56,7 +64,9 @@ export class User extends Command {
     Object.entries(user.activity).forEach(([key, { totalRating: vote, pages }]) =>
       reply.addField(
         key.toUpperCase(),
-        `**${pages}** page${pages === 1 ? 's' : ''} pour **${vote ? vote : '0'}** votes`,
+        `**${pages}** page${pages === 1 ? 's' : ''} pour **${
+          vote ? vote : '0'
+        }** votes`,
         true
       )
     )
@@ -72,4 +82,12 @@ export class User extends Command {
       .setDescription('')
       .update()
   }
+}
+
+function checkIfLekterIsTryingToShowHisEgo(message: Discord.Message) {
+  if (message.author.id === '391910710965305346') {
+    return /lekter/i.test(message.content)
+  }
+
+  return false
 }

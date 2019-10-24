@@ -49,7 +49,7 @@ async function extractThreatLevel(document: CheerioStatic) {
   const element: CheerioElement = document('strong:contains("Niveau")')[0]
   if (!element) return null
 
-  return element.next.data ? element.next.data.replace('o', '').trim() : null
+  return element.next.data ? element.next.data.replace('o ', '').trim() : null
 }
 
 /**

@@ -16,5 +16,6 @@ const scpperPlugin: Banhammer.plugin = async instance => {
 
 export const scpper = plugin(scpperPlugin, {
   name: 'scpper',
-  shouldSkipOverride: true
+  shouldSkipOverride: true,
+  hershel: 
 })
