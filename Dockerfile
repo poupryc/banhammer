@@ -10,7 +10,7 @@ RUN yarn install --ignore-optional \
   && yarn install --prefer-offline --production
 
 # Build final image
-FROM arm32v7/node:12-slim
+FROM arm32v7/node:13-slim
 
 ENV NODE_ENV=production
 
