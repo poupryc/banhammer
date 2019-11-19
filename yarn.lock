@@ -45,7 +45,7 @@
     "@types/connect" "*"
     "@types/node" "*"
 
-"@types/cheerio@^0.22.11", "@types/cheerio@^0.22.13":
+"@types/cheerio@^0.22.13":
   version "0.22.14"
   resolved "https://registry.yarnpkg.com/@types/cheerio/-/cheerio-0.22.14.tgz#d150889891e7db892c6a0b16bd5583cc70b3fc44"
   integrity sha512-SVtcP2fvPYrebTwpyqxjxb7K5v3ZOAdH409yAEWFPpZThCSGa1K2IFfx6Rg6ttvThCBQXP4fU9WF94sqLoiQGg==
@@ -91,7 +91,7 @@
     "@types/express-serve-static-core" "*"
     "@types/serve-static" "*"
 
-"@types/got@^9.4.1", "@types/got@^9.6.6":
+"@types/got@^9.6.6":
   version "9.6.9"
   resolved "https://registry.yarnpkg.com/@types/got/-/got-9.6.9.tgz#b3192188b96c871b9c67dc80d1b0336441432a38"
   integrity sha512-w+ZE+Ovp6fM+1sHwJB7RN3f3pTJHZkyABuULqbtknqezQyWadFEp5BzOXaZzRqAw2md6/d3ybxQJt+BNgpvzOg==
@@ -214,6 +214,14 @@ axios@^0.18.0:
   version "0.18.1"
   resolved "https://registry.yarnpkg.com/axios/-/axios-0.18.1.tgz#ff3f0de2e7b5d180e757ad98000f1081b87bcea3"
   integrity sha512-0BfJq4NSfQXd+SkFdrvFbG7addhYSBA2mQwISr46pD6E5iqkWg02RAs8vyTT/j0RTnoYmeXauBuSv1qKwR179g==
+  dependencies:
+    follow-redirects "1.5.10"
+    is-buffer "^2.0.2"
+
+axios@^0.19.0:
+  version "0.19.0"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.19.0.tgz#8e09bff3d9122e133f7b8101c8fbdd00ed3d2ab8"
+  integrity sha512-1uvKqKQta3KBxIz14F2v06AEHZ/dIoeKfbTRkK1E5oqjDnuEerLmYTgJB5AiQZHJcljpg1TuRzdjDR06qNk0DQ==
   dependencies:
     follow-redirects "1.5.10"
     is-buffer "^2.0.2"
@@ -960,16 +968,15 @@ wikidot-ajax@^1.1.0:
     cheerio "^0.22.0"
     got "^6.5.0"
 
-wikidot-kit@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/wikidot-kit/-/wikidot-kit-1.1.0.tgz#384dadeb004b03b24e3f894de166bbe8be955fdb"
-  integrity sha512-tbfyC6wVNKULYD1GTgYyYsqJjGH2/uA5Ls/gA5FklryESbX/9bbIjTKum88oXrdZprI1xbLLLdk/8rB0gI+MIw==
+wikidot-kit@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/wikidot-kit/-/wikidot-kit-2.0.0.tgz#429d0b8665fc2ed537b0d9f37bb5fd63b93e10b2"
+  integrity sha512-yBgodKb4Qjyt9oE21rmjgLvrzO2J/uMO+FXlLhz/J30fc8ViTbIMdZuj56h2aOPtS9Lsp/yoq6Y8HA3Be5AU/w==
   dependencies:
-    "@types/cheerio" "^0.22.11"
-    "@types/got" "^9.4.1"
+    "@types/cheerio" "^0.22.13"
     "@types/xmlrpc" "^1.3.5"
+    axios "^0.19.0"
     cheerio "^0.22.0"
-    got "^9.6.0"
     p-queue "^4.0.0"
     promise-retry "^1.1.1"
     wikidot-ajax "^1.1.0"

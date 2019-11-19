@@ -10,7 +10,8 @@
     "esModuleInterop": true,
     "declaration": false,
     "resolveJsonModule": true,
-    "lib": ["es2017", "es6"]
+    "lib": ["es2017", "es6"],
+    "skipLibCheck": true // track https://github.com/scpdb/wikidot-kit/pull/3
   },
-  "exclude": ["./test"]
+  "exclude": ["./test", "node_modules"]
 }

@@ -1,5 +1,8 @@
 import cheerio from 'cheerio'
+
+// @ts-ignore
 import WikidotKit from 'wikidot-kit'
+
 import { assert } from './util'
 
 const wk = new WikidotKit(process.env.WIKIDOT_TOKEN)

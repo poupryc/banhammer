@@ -30,7 +30,7 @@
     "got": "^9.6.0",
     "hershel": "^2.2.1",
     "scpper.js": "^3.0.3",
-    "wikidot-kit": "^1.1.0"
+    "wikidot-kit": "^2.0.0"
   },
   "devDependencies": {
     "@types/cheerio": "^0.22.13",
