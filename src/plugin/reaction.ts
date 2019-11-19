@@ -17,9 +17,7 @@ async function reactionHandler(reaction: d.MessageReaction, author: d.User) {
   const accred = permission({ author, member })
   if (accred.level >= 1) return
 
-  if (reaction.message.reactions.size > 5) {
-    reaction.remove(author)
-  }
+  if (reaction.message.reactions.size > 5) reaction.remove(author)
 }
 
 /**
@@ -28,6 +26,7 @@ async function reactionHandler(reaction: d.MessageReaction, author: d.User) {
  */
 function topicDisableHandler(channel: d.Channel) {
   if (!(channel instanceof d.TextChannel)) return false
+  if (!channel.topic) return false
   if (channel.topic.includes('no-reaction-handler')) return true
 
   return false

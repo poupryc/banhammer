@@ -5,18 +5,21 @@ import * as plugin from './plugin'
 
 const isDev = process.env.NODE_ENV === 'dev'
 
-const bot = new Client({
-  logger: {
-    level: isDev ? 'debug' : 'error'
+const bot = new Client(
+  {
+    logger: {
+      level: isDev ? 'debug' : 'error'
+    },
+    reply: {
+      footer: { text: 'Banhammer | Fondation SCP' }
+    }
   },
-  reply: {
-    footer: { text: 'Banhammer | Fondation SCP' }
+  {
+    disabledEvents: ['TYPING_START', 'GUILD_SYNC', 'WEBHOOKS_UPDATE'],
+    messageCacheMaxSize: 100,
+    messageCacheLifetime: 3600 / 2
   }
-}, {
-  disabledEvents: ['TYPING_START', 'GUILD_SYNC', 'WEBHOOKS_UPDATE'],
-  messageCacheMaxSize: 100,
-  messageCacheLifetime: 3600
-})
+)
 
 bot
   .use(middleware.error)

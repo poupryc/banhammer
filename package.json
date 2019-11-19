@@ -28,7 +28,7 @@
     "cheerio": "^1.0.0-rc.3",
     "dice-typescript": "^1.6.1",
     "got": "^9.6.0",
-    "hershel": "^2.2.0",
+    "hershel": "^2.2.1",
     "scpper.js": "^3.0.3",
     "wikidot-kit": "^1.1.0"
   },

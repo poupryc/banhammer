@@ -43,8 +43,8 @@ export function extractUsage(usage: string, options: PathToRegexpOption) {
   const keys = pathToRegexp.parse(usage ? usage : '', options)
 
   return keys
-    .map(
-      k => (typeof k !== 'string' ? (k.optional ? `[${k.name}]` : `<${k.name}>`) : k)
+    .map(k =>
+      typeof k !== 'string' ? (k.optional ? `[${k.name}]` : `<${k.name}>`) : k
     )
     .join(' ')
 }
