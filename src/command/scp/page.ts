@@ -1,7 +1,6 @@
-import { Scpper, Api } from 'scpper.js'
-
-import { Banhammer, Command, Color } from '../../types/'
+import Meilisearch from 'meilisearch'
 import * as helper from '../../helper/'
+import { Banhammer, Color, Command } from '../../types/'
 
 export class Page extends Command {
   constructor() {
@@ -10,70 +9,52 @@ export class Page extends Command {
       aliases: ['p', 'scp'],
       channel: ['text', 'dm'],
       argument: `:search+`,
-      info: 'affiche les informations sur une page'
+      info: 'affiche les informations sur une page',
     })
   }
 
   public async action({ createReply, params, app }: Banhammer.Context) {
     const reply = createReply({ ...helper.embed, color: Color.GOLD })
 
-    const scpper = app.get<Scpper>('scpper')
-
-    await reply.setDescription('Recherche en cours...').send()
-
     let { search } = params
 
-    const first = search
-      .split(' ')[0]
-      .toLowerCase()
-      .trim()
+    const meilisearch = app.get<Meilisearch>('meilisearch')
+    const index = meilisearch.getIndex('pages')
 
-    let site = scpper.site
+    const result = await index.search(search, {
+      limit: 1,
+      attributesToRetrieve: [
+        'title',
+        'subtitle',
+        'slug',
+        'username',
+        'preview',
+        'vote',
+      ],
+    })
 
-    if (first in Api.SiteInitial) {
-      site = first as Api.site
-      search = search.replace(site, '').trim()
+    if (result.hits.length === 0) {
+      return reply
+        .setColor(Color.RED)
+        .setDescription(`Aucun résultat pour "${search}".`)
+        .send()
     }
 
-    const { data } = await scpper
-      .findPages(search, {
-        limit: 1,
-        site: site
-      })
-      .catch(err => {
-        reply.response.delete()
-        throw err
-      })
+    const item: any = result.hits[0]
 
-    const { pages } = data
+    const title = item.subtitle ? `${item.title} - ${item.subtitle}` : item.title
+    const username = item.username ? item.username : 'Inconnu'
 
-    if (pages.length === 0) {
-      return reply.setDescription(`Aucun résultat pour "${search}"`).update()
-    }
-
-    const page = helper.extractPageInfo(pages[0])
-    const rating = page.rating ? page.rating : 0
+    console.log(item.preview)
 
     reply
-      .addField('Vote', (rating <= 0 ? '' : '+') + rating, true)
-      .setFooter(page.authors.join(', '))
-      .setColor(Color.GREY)
-      .setTitle(page.title)
-      .setURL(page.url)
-      .update()
-
-    helper
-      .getPage(page)
-      .then(({ description, classification, threat }) => {
-        if (classification) reply.addField('Classe', classification, true)
-        if (threat) reply.addField('Menace', threat, true)
-
-        reply
-          .setDescription(description ? description : 'Aucune description')
-          .update()
-      })
-      .catch(() => {
-        reply.setDescription(`L'analyse n'est pas disponible`).update()
-      })
+      .setTitle(title)
+      .setURL(`http://fondationscp.wikidot.com/${item.slug}`)
+      .setDescription(
+        item.preview ? item.preview.normalize() : 'Aucun aperçu disponible'
+      )
+      .addField('Votes', `${item.vote > 0 ? '+' : ''}${item.vote}`)
+      .setFooter(`par ${username}`)
+      .send()
   }
 }

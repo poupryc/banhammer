@@ -25,18 +25,18 @@
   "dependencies": {
     "@hershel/dispatcher": "^3.0.1",
     "@hershel/plugin": "^1.0.2",
-    "cheerio": "^1.0.0-rc.3",
     "dice-typescript": "^1.6.1",
-    "got": "^9.6.0",
+    "got": "^10.7.0",
     "hershel": "^2.2.1",
+    "meilisearch": "^0.9.0",
     "scpper.js": "^3.0.3",
     "wikidot-kit": "^2.0.0"
   },
   "devDependencies": {
-    "@types/cheerio": "^0.22.13",
-    "@types/got": "^9.6.6",
+    "@types/cheerio": "^0.22.17",
+    "@types/got": "^9.6.10",
     "@types/node": "^12.7.1",
-    "prettier": "^1.18.2",
-    "typescript": "^3.5.3"
+    "prettier": "^2.0.4",
+    "typescript": "^3.8.3"
   }
 }

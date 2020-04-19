@@ -1,4 +1,5 @@
 export * from './dispatcher'
+export * from './meilisearch'
 export * from './reaction'
-export * from './scpper'
 export * from './role'
+export * from './scpper'

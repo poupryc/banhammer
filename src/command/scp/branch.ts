@@ -12,7 +12,7 @@ export class Branch extends Command {
       aliases: ['b'],
       channel: ['text', 'dm'],
       argument: `:branch?`,
-      info: 'cherche les informations liées à une branche'
+      info: 'cherche les informations liées à une branche',
     })
   }
 
@@ -23,7 +23,7 @@ export class Branch extends Command {
       const initial = params.branch.toLowerCase().trim()
 
       // @ts-ignore
-      const branch = select(initial)
+      const branch: any = select(initial)
       const url = Api.SiteUrl[initial as Api.site]
 
       if (branch.discord) reply.addField('Discord', branch.discord)

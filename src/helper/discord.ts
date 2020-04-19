@@ -13,7 +13,7 @@ export const pattern = {
   EVERYONE: d.MessageMentions.EVERYONE_PATTERN.source,
   CHANNEL: d.MessageMentions.CHANNELS_PATTERN.source,
   USER: d.MessageMentions.USERS_PATTERN.source,
-  ROLE: d.MessageMentions.ROLES_PATTERN.source
+  ROLE: d.MessageMentions.ROLES_PATTERN.source,
 }
 
 /**
@@ -43,7 +43,7 @@ export const resolveUser = (resolvable: string, client: d.Client) => {
  * @param client client
  */
 export const resolveUsers = (resolvables: string[], client: d.Client) =>
-  resolvables.map(u => resolveUser(u, client))
+  resolvables.map((u) => resolveUser(u, client))
 
 /**
  * Resolve member from discord mention
@@ -65,7 +65,7 @@ export const resolveMember = (resolvable: string, guild: d.Guild) => {
  * @param client client
  */
 export const resolveMembers = (resolvables: string[], guild: d.Guild) =>
-  resolvables.map(u => resolveMember(u, guild))
+  resolvables.map((u) => resolveMember(u, guild))
 
 /**
  * Create custom got instance for Discord status API
@@ -73,8 +73,8 @@ export const resolveMembers = (resolvables: string[], guild: d.Guild) =>
 export const statusAPI: typeof got =
   // @ts-ignore
   got.extend({
-    baseUrl: 'https://srhpyqt94yxb.statuspage.io/api/v2',
-    json: true
+    url: 'https://srhpyqt94yxb.statuspage.io/api/v2',
+    responseType: 'json',
   })
 
 type ValidatorOptions = {
@@ -139,7 +139,7 @@ export class Validator {
 
     const perm = {
       target: permission({ member: target }).level,
-      author: permission({ member: author }).level
+      author: permission({ member: author }).level,
     }
 
     assert(perm.author > perm.target, `Vous n'avez pas l'accréditation suffisante`)

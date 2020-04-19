@@ -1,7 +1,6 @@
-import { Scpper, Api } from 'scpper.js'
-
-import { Banhammer, Command, Color } from '../../types/'
+import Meilisearch from 'meilisearch'
 import * as helper from '../../helper/'
+import { Banhammer, Color, Command } from '../../types/'
 
 export class Search extends Command {
   constructor() {
@@ -10,56 +9,38 @@ export class Search extends Command {
       aliases: ['s'],
       channel: ['text', 'dm'],
       argument: `:search+`,
-      info: 'effectue une recherche de page'
+      info: 'effectue une recherche de page',
     })
   }
 
   public async action({ createReply, params, app }: Banhammer.Context) {
     const reply = createReply({ ...helper.embed, color: Color.GOLD })
 
-    const scpper = app.get<Scpper>('scpper')
-
-    await reply.setDescription('Recherche en cours...').send()
-
     let { search } = params
 
-    const first = search
-      .split(' ')[0]
-      .toLowerCase()
-      .trim()
+    const meilisearch = app.get<Meilisearch>('meilisearch')
+    const index = meilisearch.getIndex('pages')
 
-    let site = scpper.site
+    const result = await index.search(search, {
+      limit: 9,
+      attributesToRetrieve: ['title', 'slug', 'subtitle', 'username'],
+    })
 
-    if (first in Api.SiteInitial) {
-      site = first as Api.site
-      search = search.replace(site, '').trim()
+    if (result.hits.length === 0) {
+      return reply
+        .setColor(Color.RED)
+        .setDescription(`Aucun résultat pour "${search}".`)
     }
 
-    const { data } = await scpper
-      .findPages(search, {
-        limit: 6,
-        site: site
+    const text = result.hits
+      .map((item: any) => {
+        let title = item.subtitle ? `${item.title} - ${item.subtitle}` : item.title
+        let username = item.username ? item.username : 'Inconnu'
+
+        return `[${title}](http://fondationscp.wikidot.com/${item.slug}) *par ${username}*`
       })
-      .catch(err => {
-        reply.response.delete()
-        throw err
-      })
-
-    const { pages } = data
-
-    if (pages.length === 0) {
-      return reply.setDescription(`Aucun résultat pour "${search}"`).update()
-    }
-
-    const result = pages
-      .map(helper.extractPageInfo)
-      .map(i => `${i.link} - ${i.authors.join(', ')}`)
       .join('\n')
 
-    reply
-      .setColor(Color.GREY)
-      .setTitle(`Résultat pour "${search}"`)
-      .setDescription(result)
-      .update()
+    reply.setTitle(`Résultat pour "${search}"`).setDescription(text).send()
   }
 }
