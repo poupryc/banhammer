@@ -52,7 +52,8 @@ export class Page extends Command {
       .setDescription(
         item.preview ? item.preview.normalize() : 'Aucun aperçu disponible'
       )
-      .addField('Votes', `${item.vote > 0 ? '+' : ''}${item.vote}`)
+      .addField('Votes', `${item.vote > 0 ? '+' : ''}${item.vote}`, true)
+      .addField('Tags', item.tag.join(', '), true)
       .setFooter(`par ${username} ${helper.authorToEmoji(item.tag)}`)
       .send()
   }

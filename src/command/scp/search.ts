@@ -14,7 +14,7 @@ export class Search extends Command {
   }
 
   public async action({ createReply, params, app }: Banhammer.Context) {
-    const reply = createReply({ ...helper.embed, color: Color.GOLD })
+    const reply = createReply({ color: Color.GOLD })
 
     let { search } = params
 
