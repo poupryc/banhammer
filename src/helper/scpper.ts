@@ -54,7 +54,6 @@ export function authorToEmoji(tags: string[]) {
     'de',
     'en',
     'es',
-    'fr',
     'it',
     'jp',
     'ko',
