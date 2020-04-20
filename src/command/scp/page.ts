@@ -30,6 +30,7 @@ export class Page extends Command {
         'username',
         'preview',
         'vote',
+        'tag',
       ],
     })
 
@@ -45,8 +46,6 @@ export class Page extends Command {
     const title = item.subtitle ? `${item.title} - ${item.subtitle}` : item.title
     const username = item.username ? item.username : 'Inconnu'
 
-    console.log(item.preview)
-
     reply
       .setTitle(title)
       .setURL(`http://fondationscp.wikidot.com/${item.slug}`)
@@ -54,7 +53,7 @@ export class Page extends Command {
         item.preview ? item.preview.normalize() : 'Aucun aperçu disponible'
       )
       .addField('Votes', `${item.vote > 0 ? '+' : ''}${item.vote}`)
-      .setFooter(`par ${username}`)
+      .setFooter(`par ${username} ${helper.authorToEmoji(item.tag)}`)
       .send()
   }
 }

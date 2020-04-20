@@ -5,7 +5,7 @@ export const extractPageInfo = (page: Api.PageItem) => ({
   ...page,
   authors: page.authors.map(formatAuthor),
   link: formatUrl(page),
-  url: extractUrl(page)
+  url: extractUrl(page),
 })
 
 /**
@@ -48,9 +48,31 @@ export const determineRoleEmoji = (role: string) => {
   }
 }
 
+export function authorToEmoji(tags: string[]) {
+  const lang = [
+    'cn',
+    'de',
+    'en',
+    'es',
+    'fr',
+    'it',
+    'jp',
+    'ko',
+    'pl',
+    'pt',
+    'ru',
+    'th',
+    'ua',
+  ]
+
+  const translation = lang.some((i) => tags.includes(i))
+
+  return translation ? '🌍' : '✍️'
+}
+
 /**
  * Scpper embed
  */
 export const embed = {
-  footer: { text: 'Propulsé par Scpper' }
+  footer: { text: 'Propulsé par Scpper' },
 }

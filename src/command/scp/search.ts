@@ -23,7 +23,7 @@ export class Search extends Command {
 
     const result = await index.search(search, {
       limit: 9,
-      attributesToRetrieve: ['title', 'slug', 'subtitle', 'username'],
+      attributesToRetrieve: ['title', 'slug', 'subtitle', 'username', 'tag'],
     })
 
     if (result.hits.length === 0) {
@@ -37,7 +37,9 @@ export class Search extends Command {
         let title = item.subtitle ? `${item.title} - ${item.subtitle}` : item.title
         let username = item.username ? item.username : 'Inconnu'
 
-        return `[${title}](http://fondationscp.wikidot.com/${item.slug}) *par ${username}*`
+        return `[${title}](http://fondationscp.wikidot.com/${
+          item.slug
+        }) *par ${username}* ${helper.authorToEmoji(item.tag)}`
       })
       .join('\n')
 
