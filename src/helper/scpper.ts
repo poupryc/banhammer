@@ -75,3 +75,16 @@ export function authorToEmoji(tags: string[]) {
 export const embed = {
   footer: { text: 'Propulsé par Scpper' },
 }
+
+/**
+ * Regex to search specific wiki
+ */
+export const specific_search = /^(?<branch>[a-zA-Z]{2,})\s+(?<query>.+)$/
+
+/**
+ * Map locale to Meilisearch index
+ */
+export const index_names: Record<string, string> = {
+  en: 'page_en',
+  fr: 'page_fr',
+}

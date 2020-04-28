@@ -17,13 +17,29 @@ export class Search extends Command {
     const reply = createReply({ color: Color.GOLD })
 
     let { search } = params
+    let index_name = helper.index_names['fr']
+
+    const match = helper.specific_search.exec(search)
+    if (match) {
+      const { branch, query } = match.groups
+
+      if (!(match.groups.branch in helper.index_names)) {
+        return reply
+          .setColor(Color.RED)
+          .setDescription(`"${branch}" ne semble pas être une branche supportée.`)
+          .send()
+      }
+
+      index_name = helper.index_names[branch]
+      search = search.substring(branch.length).trim()
+    }
 
     const meilisearch = app.get<Meilisearch>('meilisearch')
-    const index = meilisearch.getIndex('pages')
+    const index = meilisearch.getIndex(index_name)
 
     const result = await index.search(search, {
       limit: 9,
-      attributesToRetrieve: ['title', 'slug', 'subtitle', 'username', 'tag'],
+      attributesToRetrieve: ['title', 'url', 'subtitle', 'author', 'tag'],
     })
 
     if (result.hits.length === 0) {
@@ -35,11 +51,11 @@ export class Search extends Command {
     const text = result.hits
       .map((item: any) => {
         let title = item.subtitle ? `${item.title} - ${item.subtitle}` : item.title
-        let username = item.username ? item.username : 'Inconnu'
+        let username = item.author ?? 'Inconnu'
 
-        return `[${title}](http://fondationscp.wikidot.com/${
-          item.slug
-        }) *par ${username}* ${helper.authorToEmoji(item.tag)}`
+        return `[${title}](${item.url}) *par ${username}* ${helper.authorToEmoji(
+          item.tag
+        )}`
       })
       .join('\n')
 
