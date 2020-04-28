@@ -23,15 +23,10 @@ export class Page extends Command {
     if (match) {
       const { branch, query } = match.groups
 
-      if (!(match.groups.branch in helper.index_names)) {
-        return reply
-          .setColor(Color.RED)
-          .setDescription(`"${branch}" ne semble pas être une branche supportée.`)
-          .send()
+      if (match.groups.branch in helper.index_names) {
+        index_name = helper.index_names[branch]
+        search = query
       }
-
-      index_name = helper.index_names[branch]
-      search = search.substring(branch.length).trim()
     }
 
     const meilisearch = app.get<Meilisearch>('meilisearch')
