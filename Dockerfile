@@ -1,4 +1,4 @@
-FROM arm64v8/node:14-slim AS builder
+FROM arm64v8/node:14-alpine AS builder
 
 LABEL maintainer="HelloEdit <corentin.poupry@protonmail.com>"
 
@@ -9,7 +9,7 @@ RUN yarn install --ignore-optional \
   && yarn run build \
   && yarn install --prefer-offline --production
 
-FROM arm64v8/node:14-slim
+FROM arm64v8/node:14-alpine
 
 ENV NODE_ENV=production
 
