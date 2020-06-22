@@ -5,7 +5,7 @@ export class Ban extends Command {
   constructor() {
     super({
       name: 'ban',
-      accreditation: 5,
+      accreditation: 4,
       info: 'banni un utilisateur',
       argument: `:user(${helper.pattern.USER}) :reason*`,
       guarded: true
