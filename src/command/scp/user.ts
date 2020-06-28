@@ -11,19 +11,12 @@ export class User extends Command {
       aliases: ['u'],
       channel: ['text', 'dm'],
       argument: `:search+`,
-      info: `effectue une recherche d'utilisateur`
+      info: `effectue une recherche d'utilisateur`,
     })
   }
 
   public async action({ createReply, params, app, message }: Banhammer.Context) {
     const reply = createReply({ ...helper.embed, color: Color.GOLD })
-
-    if (checkIfLekterIsTryingToShowHisEgo(message)) {
-      return reply
-        .setType('string')
-        .setMessage('no')
-        .send()
-    }
 
     const scpper = app.get<Scpper>('scpper')
 
@@ -31,10 +24,7 @@ export class User extends Command {
 
     let { search } = params
 
-    const first = search
-      .split(' ')[0]
-      .toLowerCase()
-      .trim()
+    const first = search.split(' ')[0].toLowerCase().trim()
 
     let site = scpper.site
 
@@ -46,9 +36,9 @@ export class User extends Command {
     const { data } = await scpper
       .findUsers(search, {
         limit: 1,
-        site: site
+        site: site,
       })
-      .catch(err => {
+      .catch((err) => {
         reply.response.delete()
         throw err
       })
@@ -72,7 +62,7 @@ export class User extends Command {
     )
 
     const total = Object.values(user.activity)
-      .map(v => Number(v.totalRating ? v.totalRating : 0))
+      .map((v) => Number(v.totalRating ? v.totalRating : 0))
       .reduce((a, o) => a + o)
 
     reply
@@ -82,12 +72,4 @@ export class User extends Command {
       .setDescription('')
       .update()
   }
-}
-
-function checkIfLekterIsTryingToShowHisEgo(message: Discord.Message) {
-  if (message.author.id === '391910710965305346') {
-    return /lekter/i.test(message.content)
-  }
-
-  return false
 }

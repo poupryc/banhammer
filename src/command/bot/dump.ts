@@ -12,7 +12,7 @@ export class Dump extends Command {
       name: 'dump',
       hidden: true,
       accreditation: 1,
-      channel: ['text', 'dm']
+      channel: ['text', 'dm'],
     })
   }
 
@@ -41,4 +41,6 @@ export class Dump extends Command {
  * If we are inside docker matrix
  */
 const isInsideMatrix = () =>
-  new Promise<boolean>(r => fs.access('/.dockerenv', fs.constants.F_OK, e => r(!e)))
+  new Promise<boolean>((r) =>
+    fs.access('/.dockerenv', fs.constants.F_OK, (e) => r(!e))
+  )

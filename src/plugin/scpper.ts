@@ -7,7 +7,7 @@ import { Banhammer } from '../types'
  * Scpper injection plugin
  * @param instance banhammer
  */
-const scpperPlugin: Banhammer.plugin = async instance => {
+const scpperPlugin: Banhammer.plugin = async (instance) => {
   const scpper = new Scpper({ site: 'fr', timeout: 10000 })
 
   instance.set('wiki', Api.SiteUrl[scpper.site])
@@ -16,5 +16,5 @@ const scpperPlugin: Banhammer.plugin = async instance => {
 
 export const scpper = plugin(scpperPlugin, {
   name: 'scpper',
-  shouldSkipOverride: true
+  shouldSkipOverride: true,
 })

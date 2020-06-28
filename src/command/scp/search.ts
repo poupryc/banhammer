@@ -41,6 +41,7 @@ export class Search extends Command {
       return reply
         .setColor(Color.RED)
         .setDescription(`Aucun résultat pour "${search}".`)
+        .send()
     }
 
     const text = result.hits

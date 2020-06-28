@@ -42,6 +42,7 @@ export class Page extends Command {
         'author',
         'vote',
         'tag',
+        'created_at',
       ],
     })
 
@@ -63,6 +64,7 @@ export class Page extends Command {
       .setDescription(item.preview?.normalize() ?? 'Aucun aperçu disponible')
       .addField('Votes', `${item.vote > 0 ? '+' : ''}${item.vote}`)
       .setFooter(`par ${username} ${helper.authorToEmoji(item.tag)}`)
+      .setTimestamp(item.created_at)
       .send()
   }
 }

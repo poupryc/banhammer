@@ -12,7 +12,7 @@ export class Help extends Command {
       argument: ':command?',
       channel: ['text', 'dm'],
       info: 'aide sur les commandes disponibles',
-      guarded: true
+      guarded: true,
     })
   }
 
@@ -29,17 +29,17 @@ export class Help extends Command {
     const { registry, options } = dispatcher
 
     const commands = ([...new Set(registry.commands.values())] as Command[])
+      .filter((c) => !c.hidden)
       .filter(
-        c =>
+        (c) =>
           // check if user have accreditation for the command
           authorization.level >= c.accreditation ||
           // ...or specific role bypass if in guild
           (message.guild
-            ? message.member.roles.some(r => c.roles.includes(r.id))
+            ? message.member.roles.some((r) => c.roles.includes(r.id))
             : false)
       )
-      .filter(c => !c.hidden)
-      .filter(c =>
+      .filter((c) =>
         // check if command is supposed to run on this type of channel
         helper.checkChannel(c, message.channel.type)
       )
@@ -47,7 +47,7 @@ export class Help extends Command {
     if (search) {
       const name = search.toLowerCase()
 
-      const command = commands.find(c => [...c.values()].includes(search))
+      const command = commands.find((c) => [...c.values()].includes(search))
 
       if (!command) return message.react('🤔')
 
@@ -63,12 +63,12 @@ export class Help extends Command {
       return reply.send()
     }
 
-    const grouped = helper.groupBy(c => (c.group ? c.group : '...'), commands)
+    const grouped = helper.groupBy((c) => (c.group ? c.group : '...'), commands)
 
     reply.setTitle('🔍 Aide du Banhammer')
 
     for (let [key, value] of Object.entries(grouped)) {
-      const help = value.map(c => {
+      const help = value.map((c) => {
         let msg = `\`${c.name}\` ${c.info}`
         if (c.disabled) msg = `~~${msg}~~`
 
