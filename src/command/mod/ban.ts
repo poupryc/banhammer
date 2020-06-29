@@ -6,7 +6,7 @@ export class Ban extends Command {
     super({
       name: 'ban',
       accreditation: 4,
-      info: 'banni un utilisateur',
+      info: 'bannit un utilisateur',
       argument: `:user(${helper.pattern.USER}) :reason*`,
       guarded: true
     })
