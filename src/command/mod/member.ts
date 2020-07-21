@@ -16,6 +16,7 @@ export class Member extends Command {
 
     const roles = app.get<Banhammer.roles>('role')
     const member = roles.get('member')
+    const guest = roles.get('guest')
 
     const target = helper.resolveMember(params.user, message.guild)
     const { member: author } = message
@@ -24,7 +25,7 @@ export class Member extends Command {
 
     const reason = `[MEMBER] ${author.user.tag} -> ${target.user.tag}`
 
-    target.addRole(member, reason)
+    Promise.all([target.addRole(member, reason), target.removeRole(guest, reason)])
 
     reply
       .setColor(Color.GREEN)
