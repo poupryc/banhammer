@@ -9,7 +9,7 @@ export class Mute extends Command {
       accreditation: 2,
       argument: `:user(${helper.pattern.USER}) :reason*`,
       info: 'mute un utilisateur',
-      guarded: true
+      guarded: true,
     })
   }
 
@@ -27,14 +27,8 @@ export class Mute extends Command {
     const input = params.reason ? params.reason : 'Aucune raison définie'
     const reason = `[MUTE] ${input} ${author.user.tag} -> ${target.user.tag}`
 
-    await Promise.all([
-      target.removeRole(role.get('member'), reason),
-      target.addRole(muted, reason)
-    ])
+    await target.addRole(muted, reason)
 
-    reply
-      .setColor(Color.GREEN)
-      .setDescription(`${target} a été muté`)
-      .send()
+    reply.setColor(Color.GREEN).setDescription(`${target} a été muté`).send()
   }
 }
