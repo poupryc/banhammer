@@ -2,10 +2,12 @@ import { plugin } from '@hershel/plugin'
 
 import { Banhammer } from '../types'
 
+export type Roles = Map<string, string>
+
 /**
  * Roles for the banhammer
  */
-export const roles: Map<string, string> = new Map()
+export const roles: Roles = new Map()
   .set('muted', '417334957279674368')
   .set('member', '417334522775076864')
   .set('int', '417348223443664896')
